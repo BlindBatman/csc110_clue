@@ -20,10 +20,9 @@ public class chars {
 	public void Character() throws IOException {
 
 		System.out.println("Who would you like to play as? ");
-		String[] chars = { "Mrs.Corrine" + "'Peacock'" +"padilla ", "Ms.sharon"+ "'white'" + "struve", "Mr.Ryan"+"'green'" + "cox",
-				"Professor koehler", "Miss Scarlet - ", "Colonel krebs" };
-
-		ConsoleUI.promptForMenuSelection(chars, false);
+		Player doThing= new Player();
+			
+		ConsoleUI.promptForMenuSelection(doThing.playerName, false);
 
 	}
 

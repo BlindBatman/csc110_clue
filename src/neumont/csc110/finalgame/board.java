@@ -4,8 +4,7 @@ import java.io.IOException;
 
 public class board {
 	String[][] boardlength = new String[24][25];
-	int x = 0;
-	int y = 0;
+	
 
 	public void room() {
 
