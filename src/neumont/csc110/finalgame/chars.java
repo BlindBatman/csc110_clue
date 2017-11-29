@@ -8,10 +8,10 @@ public class chars {
 	public boolean loop = false;
 	int count = 0;
 
-	public void loop() throws IOException {
+	public void choiceLoop() throws IOException {
 		do {
 			peeps();
-			lop();
+			booloop();
 
 		} while (!loop);
 
@@ -51,7 +51,7 @@ public class chars {
 
 	}
 
-	public boolean lop() {
+	public boolean booloop() {
 
 		if (count == 0 || count > 6) {
 			return loop;

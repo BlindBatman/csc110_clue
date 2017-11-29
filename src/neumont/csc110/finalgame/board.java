@@ -10,7 +10,7 @@ public class board {
 
 	}
 
-	public void Movement() throws IOException {
+	public void Movement(characterChoice,) throws IOException {
 
 		dice roll = new dice();
 
@@ -21,6 +21,7 @@ public class board {
 			int move = ConsoleUI.promptForMenuSelection(direction, false);
 			if (move == 1) {
 				y--;
+				
 				diceRoll++;
 			}
 			if (move == 2) {
