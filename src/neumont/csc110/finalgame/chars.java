@@ -20,9 +20,9 @@ public class chars {
 	public void Character() throws IOException {
 
 		System.out.println("Who would you like to play as? ");
-		Player doThing= new Player();
+		Player character = new Player();
 			
-		ConsoleUI.promptForMenuSelection(doThing.playerName, false);
+		ConsoleUI.promptForMenuSelection(character.playerName, false);
 
 	}
 

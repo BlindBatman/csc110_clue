@@ -15,7 +15,7 @@ public class board {
 		dice roll = new dice();
 
 		int diceRoll = 0;
-		int rollChange = roll.roll();
+		int rollChange = roll.diceRoll();
 		do {
 			String[] direction = { "up", "down", "left", "right" };
 			int move = ConsoleUI.promptForMenuSelection(direction, false);
@@ -50,12 +50,12 @@ public class board {
 
 	public void display() {
 
-		for (int line = 0; line < 24; line++) {
+		for (int row = 0; row < 24; row++) {
 			for (int column = 0; column < 25; column++) {
 
 				System.out.print("|");
-				if(y!= line || x!= column) {
-				System.out.print(boardlength[line][column]);
+				if(y!= row || x!= column) {
+				System.out.print(boardlength[row][column]);
 				}
 				else {
 					System.out.print("@");

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class dice {
 
-	public int roll() {
+	public int diceRoll() {
 		Random Dice = new Random();
 		  int[] rolls = new  int[2];
 		   for (int i = 0; i < rolls.length; i++) {
