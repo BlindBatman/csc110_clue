@@ -4,71 +4,142 @@ import java.io.IOException;
 
 public class board {
 	String[][] boardlength = new String[24][25];
-	
 
-	public void room() {
-
-	}
-
-	public void Movement(characterChoice,) throws IOException {
+	public void Movement(String symbol, int x, int y) throws IOException {
 
 		dice roll = new dice();
-
 		int diceRoll = 0;
 		int rollChange = roll.diceRoll();
+
 		do {
+
 			String[] direction = { "up", "down", "left", "right" };
 			int move = ConsoleUI.promptForMenuSelection(direction, false);
 			if (move == 1) {
+
 				y--;
-				
-				diceRoll++;
+
+				boolean check = check(x, y);
+
+				if (check != true) {
+					y++;
+					display(symbol, x, y);
+					diceRoll--;
+				}
+
+				else {
+					display(symbol, x, y);
+					diceRoll++;
+				}
+
 			}
+
 			if (move == 2) {
+
 				y++;
-				diceRoll++;
+
+				boolean badIn = check(x, y);
+
+				if (badIn != true) {
+					y--;
+					display(symbol, x, y);
+					diceRoll--;
+				}
+
+				else {
+					display(symbol, x, y);
+					diceRoll++;
+				}
 			}
+
 			if (move == 3) {
+
 				x--;
-				diceRoll++;
+
+				boolean badIn = check(x, y);
+
+				if (badIn != true) {
+					x++;
+					display(symbol, x, y);
+					diceRoll--;
+				}
+
+				else {
+					display(symbol, x, y);
+					diceRoll++;
+				}
 			}
+
 			if (move == 4) {
+
 				x++;
-				diceRoll++;
+
+				boolean badIn = check(x, y);
+
+				if (badIn != true) {
+					x--;
+					display(symbol, x, y);
+					diceRoll--;
+				}
+
+				else {
+					display(symbol, x, y);
+					diceRoll++;
+				}
 			}
 
 		} while (diceRoll < rollChange);
 
 	}
 
-	public void SecondaryMove() {
+	public boolean check(int x,int y) {
+		if (x < 0) {
+			System.out.println("cant move there");
+
+			return false;
+		}
+
+		if (x > 23) {
+			System.out.println("cant move there");
+
+			return false;
+		} 
 		// secret pass
 		// cant go in same room twice
 		// enter door
 		// move into room suggest/or move prompt
 
+		if (y < 0) {
+			System.out.println("cant move there");
+			return false;
+		}
+		if (y > 24) {
+			System.out.println("cant move there");
+			return false;
+		} else {
+			return true;
+		}
+		
 	}
+	
 
-	public void display() {
+	public void display(String symbol, int x, int y) throws IOException {
 
 		for (int row = 0; row < 24; row++) {
 			for (int column = 0; column < 25; column++) {
 
 				System.out.print("|");
-				if(y!= row || x!= column) {
-				System.out.print(boardlength[row][column]);
-				}
-				else {
-					System.out.print("@");
+				if (y != row || x != column) {
+					System.out.print(boardlength[row][column]);
+				} else {
+					System.out.print(symbol);
 				}
 			}
 
 			System.out.println();
 		}
 
-		// how far get to walk dice
-		// set start game places
-		// generate the board
+	
 
 	}
 
@@ -107,6 +178,7 @@ public class board {
 		boardlength[0][13] = " ";
 		boardlength[0][14] = " ";
 		boardlength[0][15] = "X";
+		// boardlength[0][16] = "S"; // place Scarlet
 		boardlength[1][9] = " ";
 		boardlength[1][10] = " ";
 		boardlength[1][11] = " ";
@@ -131,6 +203,7 @@ public class board {
 		boardlength[4][12] = " ";
 		boardlength[4][13] = " ";
 		boardlength[4][14] = " ";
+		// boardlength[5][0] = "P"; // place Plum
 		boardlength[5][9] = " ";
 		boardlength[5][10] = " ";
 		boardlength[5][11] = " ";
@@ -211,6 +284,7 @@ public class board {
 		boardlength[9][4] = " ";
 		boardlength[9][5] = " ";
 		boardlength[10][0] = "X"; // end Lbrary
+		// boardlength[7][24] = "M"; // place mustard
 		boardlength[11][0] = "X";
 		boardlength[12][0] = " ";
 		boardlength[12][1] = " ";
@@ -238,6 +312,7 @@ public class board {
 		boardlength[15][5] = " "; // end billiard
 		boardlength[17][0] = "X";
 		boardlength[19][0] = "X";
+		// boardlength[18][0] = "E"; // place Peacock
 		boardlength[19][1] = " ";
 		boardlength[19][2] = " ";
 		boardlength[19][3] = " ";
@@ -358,6 +433,7 @@ public class board {
 		boardlength[18][22] = " ";
 		boardlength[18][23] = " ";
 		boardlength[18][24] = " "; // end kitchen
+		// boardlength[23][9] = "G"; // place Green
 		boardlength[16][24] = "X";
 		boardlength[23][23] = " ";
 		boardlength[15][24] = " ";
@@ -412,6 +488,7 @@ public class board {
 		boardlength[9][23] = " ";
 		boardlength[9][24] = " "; // end dining room
 		boardlength[9][9] = " "; // center
+		// boardlength[23][14] = "W"; // place White
 		boardlength[9][10] = " ";
 		boardlength[9][11] = " ";
 		boardlength[9][12] = " ";
