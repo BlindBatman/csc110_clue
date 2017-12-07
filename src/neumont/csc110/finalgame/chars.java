@@ -1,14 +1,15 @@
 package neumont.csc110.finalgame;
 
-
+import java.io.BufferedReader;
 import java.io.IOException;
-
-
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class chars {
+	Hand callHandClass = new Hand();
 	public boolean loop = false;
 	int count = 0;
-
+	ArrayList<Players> players = new ArrayList<Players>();
 	board move = new board();
 	Players p1 = new Players();
 	Players p2 = new Players();
@@ -17,85 +18,125 @@ public class chars {
 	Players p5 = new Players();
 	Players p6 = new Players();
 
-	public void Character() throws IOException {
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//		System.out.println("How many players are there?");
-//		String input = in.readLine();
-//		int numbIn = Integer.parseInt(input);
+	public BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
-		while (count != 6) {
-			System.out.println("Who would you like to play as? ");
-			String[] character = { "Miss Alice" + "' Scarlet '" + "nguyen", "Professor koehler", "Colonel Joshua krebs",
-					"Mrs.Corrine" + "'Peacock'" + "padilla ", "Mr.Ryan" + "'green'" + "cox",
-					"Ms.sharon" + "'white'" + "struve" };
-			ConsoleUI.promptForMenuSelection(character, false);
-			count++;
+	public void characterCount() throws IOException {
+		boolean isTrue = false;
 
-		}
-		
-		count = 0;
-		peeps();
+		boolean validInput = false;
+		int playerNumber = 0;
+		do {
 
+			while (!validInput) {
+				System.out.println("How many players are there? 3-6");
+				String playerCount = in.readLine();
+				try {
+					playerNumber = Integer.parseInt(playerCount);
+					validInput = true;
+				} catch (NumberFormatException ex) {
+
+					System.out.println("enter valid input");
+				}
+				if (playerNumber == 3 || playerNumber == 4 || playerNumber == 5 || playerNumber == 6) {
+
+					choosePlayer(playerNumber);
+					isTrue = true;
+				}
+
+				else {
+					System.out.println("Invalid input.");
+					isTrue = false;
+				}
+
+			}
+
+		} while (isTrue != true);
 	}
 
-	public void peeps() throws IOException {
-		int[] location = { 16, 0, 0, 5, 0, 18, 9,23 ,14, 23, 23,7 };
+	private void choosePlayer(int playerNumber) throws IOException {
+		int[] location = { 16, 0, 0, 5, 0, 18, 9, 23, 14, 23, 23, 7 };
+		int playerCount = 0;
+		int choosePlayer = 0;
+	String numberGuessed = " ";
+		
 		do {
-			if (count == 0) {
+			String[] names = { " Miss Alice Scarlet Nguyen" , " Profesor Koehler" , "Mrs. Corrine Peacock Padilla"
+					, "Ryan Green Cox" , "Ms. Sharon White Struve" , "Colonel Krebs " };
+			choosePlayer = ConsoleUI.promptForMenuSelection(names, false);
+			String fuckOFf=Integer.toString(choosePlayer);
+		
+		 if(choosePlayer== 1|| choosePlayer== 2 || choosePlayer== 3 || choosePlayer== 4
+					|| choosePlayer== 5 || choosePlayer== 6 ) {
+				if( !numberGuessed.contains(fuckOFf)) {
+			 numberGuessed += fuckOFf;
+		 
+			if (choosePlayer == 1) {
+
 				p1.name = "Miss Alice" + " 'Scarlet' " + "nguyen";
-				System.out.println(p1.name + " it is your turn.");
 				p1.symbol = "S";
 				p1.x = location[0];
 				p1.y = location[1];
-				move.Movement(p1.symbol, p1.x, p1.y);
-				count++;
+				players.add(p1);
+				playerCount++;
 			}
-			if (count == 1) {
+			if (choosePlayer == 2) {
 				p2.name = "Professor koehler";
-				System.out.println(p2.name + " it is your turn.");
 				p2.symbol = "P";
 				p2.x = location[2];
 				p2.y = location[3];
-				move.Movement(p2.symbol, p2.x, p2.y);
-				count++;
+				players.add(p2);
+				playerCount++;
+
 			}
-			if (count == 2) {
+			if (choosePlayer == 3) {
 				p3.name = "Mrs.Corrine" + " 'Peacock' " + "padilla ";
-				System.out.println(p3.name + " it is your turn.");
 				p3.symbol = "C";
 				p3.x = location[4];
 				p3.y = location[5];
-				move.Movement(p3.symbol, p3.x, p3.y);
-				count++;
+				players.add(p3);
+				playerCount++;
+
 			}
-			if (count == 3) {
-				p4.name ="Mr.Ryan" + " 'green' " + "cox";
-				System.out.println(p4.name + " it is your turn.");
+			if (choosePlayer == 4) {
+				p4.name = "Mr.Ryan" + " 'green' " + "cox";
 				p4.symbol = "G";
 				p4.x = location[6];
 				p4.y = location[7];
-				move.Movement(p4.symbol, p4.x, p4.y);
-				count++;
+				players.add(p4);
+				playerCount++;
+
 			}
-			if (count == 4) {
-				p5.name = "Ms.sharon" + " 'white' " + "struve" ;
-				System.out.println(p5.name + " it is your turn.");
+			if (choosePlayer == 5) {
+				p5.name = "Ms.sharon" + " 'white' " + "struve";
 				p5.symbol = "W";
 				p5.x = location[8];
 				p5.y = location[9];
-				move.Movement(p5.symbol, p5.x, p5.y);
-				count++;
+				players.add(p5);
+				playerCount++;
+
 			}
-			if (count == 5) {
+			if (choosePlayer == 6) {
 				p6.name = "Colonel Joshua Krebs";
-				System.out.println(p6.name + " it is your turn.");
-				p6.symbol ="K";
+				p6.symbol = "K";
 				p6.x = location[10];
 				p6.y = location[11];
-				move.Movement(p6.symbol, p6.x, p6.y);
-				count++;
+				players.add(p6);
+				playerCount++;
 			}
-			count= 0;
-		} while (true);
+			}
+		
+		 }
+			// choice is the number of players and player is the person they chose
+			// so if player chose 1 then they chose scarlet which makes them p1 and that
+			// goes for every player
+			// since we say who is the player they should keep track of themselves since we
+			// sysout the name of whose turn it is
+			// so essentially we can just make player control what players move and which
+			// ones don't ex. if no one chose Krebs then krebs doesnt move
+		} while (playerCount < playerNumber);
+
+		move.turnSwitch(players);
 	}
-}
+	}
+
+

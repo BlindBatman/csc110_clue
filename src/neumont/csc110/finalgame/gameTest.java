@@ -7,7 +7,7 @@ public class gameTest {
 	public static void main(String[] args) throws IOException {
   
 		chars a = new chars();
-		a.Character();
+		a.characterCount();
 		while(true) {	
 			
 		}
